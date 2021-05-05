@@ -69,7 +69,7 @@ class InteractorTest {
 
         val unitRes = createReview(DataStub.review)
 
-//        assertThat(unitRes).isEqualTo(Unit) TODO fix on why CI is failing
+        assertThat(unitRes).isEqualTo(Unit)
     }
 
     @Test
