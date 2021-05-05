@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildTools
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
+
+    implementation project(':data')
+    implementation project(':domain')
+
+    implementation appDependencies.materialDesign
+    implementation appDependencies.kotlin
+    implementation appDependencies.androidKtx
+    implementation appDependencies.appCompat
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.recyclerView
+    implementation appDependencies.cardView
+    implementation appDependencies.cardView
+    implementation appDependencies.kotlinCoroutines
+    implementation appDependencies.androidCoroutines
+    implementation appDependencies.androidxLifecycleViewmodelKtx
+    implementation appDependencies.androidLiveDataKtx
+
+    //Navigation UI
+    implementation appDependencies.androidxFragment
+    implementation appDependencies.androidxActivity
+    implementation appDependencies.navigationFragment
+    implementation appDependencies.navigationUI
+
+    //Dependency Injection
+    implementation appDependencies.hilt
+    implementation appDependencies.hiltViewModel
+    kapt appDependencies.hiltCompiler
+    kapt appDependencies.hiltViewModelCompiler
+
+    //Testing
+    testImplementation appTestDependencies.junit
+    testImplementation appTestDependencies.truth
+    androidTestImplementation appTestDependencies.truth
+    androidTestImplementation appTestDependencies.arch
+    androidTestImplementation appTestDependencies.coreKtx
+    androidTestImplementation appTestDependencies.jUnitExt
+    androidTestImplementation appTestDependencies.androidTestRunner
+    androidTestImplementation appTestDependencies.espresso
+}
