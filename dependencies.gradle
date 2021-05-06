@@ -135,6 +135,9 @@ ext {
             hiltCompiler                 : "com.google.dagger:hilt-android-compiler:${hiltVersion}",
             hiltViewModel                : "androidx.hilt:hilt-lifecycle-viewmodel:${hiltViewModelVersion}",
             hiltViewModelCompiler        : "androidx.hilt:hilt-compiler:${hiltViewModelVersion}",
+            roomktx             : "androidx.room:room-ktx:${room}",
+            room                 : "androidx.room:room-runtime:${room}",
+            roomProcessor        : "androidx.room:room-compiler:${room}"
     ]
 
     appTestDependencies = [

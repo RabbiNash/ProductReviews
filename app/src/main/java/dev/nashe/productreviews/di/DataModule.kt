@@ -1,5 +1,6 @@
 package dev.nashe.productreviews.di
 
+import android.content.Context
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -8,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import dev.nashe.data.api.ApiService
 import dev.nashe.data.api.RetrofitServiceFactory
 import dev.nashe.data.api.ReviewApiService
+import dev.nashe.data.db.ReviewsDatabase
 import dev.nashe.data.repository.ProductRepositoryImpl
 import dev.nashe.data.repository.ReviewsRepositoryImpl
 import dev.nashe.data.repository.persistence.ProductPersistenceRepositoryImpl
@@ -34,6 +36,12 @@ abstract class DataModule {
         @Singleton
         fun providesReviewsApiService() : ReviewApiService {
             return RetrofitServiceFactory.makeReviewsRetrofitApiService(BuildConfig.DEBUG)
+        }
+
+        @Provides
+        @Singleton
+        fun providesReviewsDatabase(context: Context) : ReviewsDatabase {
+            return ReviewsDatabase.getDatabase(context)
         }
     }
 
