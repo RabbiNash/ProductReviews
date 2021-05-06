@@ -14,8 +14,7 @@ class ProductDomainMapper @Inject constructor() : RequestMapper<Product, Product
                 currency = domain.currency,
                 imgUrl = domain.imgUrl,
                 description = domain.description,
-                price = domain.price,
-                reviews = domain.reviews
+                price = domain.price
         )
     }
 

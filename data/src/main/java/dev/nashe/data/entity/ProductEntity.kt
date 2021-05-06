@@ -13,5 +13,4 @@ data class ProductEntity(
         val imgUrl: String,
         val name: String,
         val price: Int,
-        @Ignore val reviews: List<Review>
 )

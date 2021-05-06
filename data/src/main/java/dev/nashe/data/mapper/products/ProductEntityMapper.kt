@@ -13,8 +13,7 @@ class ProductEntityMapper @Inject constructor() : ResponseMapper<ProductEntity, 
             currency = entity.currency,
             description = entity.description,
             price = entity.price,
-            imgUrl = entity.imgUrl,
-            reviews = entity.reviews
+            imgUrl = entity.imgUrl
         )
     }
 }

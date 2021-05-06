@@ -2,6 +2,7 @@ package dev.nashe.data.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "reviews", foreignKeys = [ForeignKey(
@@ -11,6 +12,7 @@ import androidx.room.ForeignKey
     )]
 )
 data class ReviewEntity(
+    @PrimaryKey val id : String,
     val locale: String,
     val productId: String,
     val rating: Int,
