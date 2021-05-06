@@ -16,5 +16,6 @@ data class ReviewEntity(
     val locale: String,
     val productId: String,
     val rating: Int,
-    val text: String
+    val text: String,
+    var synced : Boolean = false
 )

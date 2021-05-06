@@ -4,6 +4,7 @@ import android.util.Log
 import dev.nashe.data.api.ReviewApiService
 import dev.nashe.data.db.ReviewsDao
 import dev.nashe.data.mapper.reviews.ReviewDomainMapper
+import dev.nashe.data.mapper.reviews.ReviewEntityMapper
 import dev.nashe.data.repository.sync.SyncScope
 import dev.nashe.data.repository.sync.review.ReviewSyncServiceImpl
 import dev.nashe.domain.model.review.Review
@@ -15,27 +16,37 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ReviewsPersistenceRepositoryImpl @Inject constructor(
-        private val reviewApiService: ReviewApiService,
-        private val reviewsDao: ReviewsDao,
-        private val domainMapper: ReviewDomainMapper
+    private val reviewApiService: ReviewApiService,
+    private val reviewsDao: ReviewsDao,
+    private val domainMapper: ReviewDomainMapper,
+    private val entityMapper: ReviewEntityMapper
 ) : ReviewPersistenceRepository, ReviewSynCallback, CoroutineScope by SyncScope() {
 
     private val reviewSyncService =
-            ReviewSyncServiceImpl(reviewSynCallback = this, reviewApiService = this.reviewApiService)
+        ReviewSyncServiceImpl(reviewSynCallback = this, reviewApiService = this.reviewApiService)
 
     override fun syncReview(review: Review) {
-       reviewSyncService.syncReview(review)
+        reviewSyncService.syncReview(review)
     }
 
     override fun insertReview(review: Review) {
-        launch(Dispatchers.IO){
+        launch(Dispatchers.IO) {
             reviewsDao.createReview(domainMapper.mapToEntity(review))
         }
     }
 
+    override fun getAllAsyncReviews(): List<Review> {
+        return entityMapper.mapToDomainList(reviewsDao.findAllAsync())
+    }
+
+
     override fun getReviewSynSuccess(review: Review) {
-        Log.d("SyncService", "Review Sync Success")
-        //todo implement synced flag
+        launch(Dispatchers.IO) {
+            val reviewEntity = domainMapper.mapToEntity(review)
+            reviewEntity.synced = true
+
+            reviewsDao.update(reviewEntity)
+        }
     }
 
     override fun getReviewSynFailure(review: Review) {

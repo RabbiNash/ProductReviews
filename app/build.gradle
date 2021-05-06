@@ -55,11 +55,14 @@ dependencies {
     implementation appDependencies.androidCoroutines
     implementation appDependencies.androidxLifecycleViewmodelKtx
     implementation appDependencies.androidLiveDataKtx
-
     implementation appDependencies.room
     implementation appDependencies.roomktx
 
     kapt appDependencies.roomProcessor
+
+    //work manager
+    implementation appDependencies.workktx
+    implementation appDependencies.hiltWorker
 
     //Navigation UI
     implementation appDependencies.androidxFragment

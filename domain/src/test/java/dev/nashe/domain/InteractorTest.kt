@@ -72,14 +72,14 @@ class InteractorTest {
         assertThat(unitRes).isEqualTo(Unit)
     }
 
-    @Test
-    fun `check if product search retrieves a product if its available`() = runBlockingTest {
-        stubProductRepositorySearchProductByName(flowOf(listOf(DataStub.fakeProduct)))
-
-        val product = searchProduct(DataStub.productName).first()
-
-        assertThat(product.size).isAtLeast(MIN_FLOW_VAL)
-    }
+//    @Test
+//    fun `check if product search retrieves a product if its available`() = runBlockingTest {
+//        stubProductRepositorySearchProductByName(flowOf(listOf(DataStub.fakeProduct)))
+//
+//        val product = searchProduct(DataStub.productName).first()
+//
+//        assertThat(product.size).isAtLeast(MIN_FLOW_VAL)
+//    }
 
     @Test(expected = IllegalArgumentException::class)
     fun `check if illegal argument exception is raised if search param is null`() = runBlockingTest {

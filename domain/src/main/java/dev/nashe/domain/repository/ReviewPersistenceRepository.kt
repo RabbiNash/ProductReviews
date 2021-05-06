@@ -5,4 +5,5 @@ import dev.nashe.domain.model.review.Review
 interface ReviewPersistenceRepository {
     fun syncReview(review: Review)
     fun insertReview(review: Review)
+    fun getAllAsyncReviews() : List<Review>
 }
