@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#292929</color>
+    <color name="colorAccent">#3EC779</color>
+
+    <!--primary-->
+    <color name="black">#404040</color>
+    <color name="blue">#3b8fb6</color>
+    <color name="green">#3ac8a8</color>
+    <color name="blue_dark">#19476B</color>
+    <color name="blue_light">#67b5d9</color>
+
+    <color name="gray">#949494</color>
+    <color name="gray_button">#d8d8d8</color>
+    <color name="gray_light">#ececec</color>
+    <color name="gray_lightest">#f9f9f9</color>
+    <color name="gray_lighter">#f5f5f5</color>
+    <color name="gray_whitish">#E5E5E5</color>
+    <color name="orange">#fff29c3d</color>
+    <color name="orange_bt">#F48633</color>
+    <color name="orange_dark">#ffd18632</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#F2463C</color>
+    <color name="error_red">#f34f43</color>
+    <color name="off_white">#f7f7f7</color>
+    <color name="greyish_brown">#4f4f4f</color>
+    <color name="grey_lighter">#E9E9E9</color>
+    <color name="teelish">#22B9B5</color>
+    <color name="charcoal_grey">#2b2d33</color>
+
+    <color name="medic_orange">#F48633</color>
+
+    <!--primary w/ alpha-->
+    <color name="white_50">#7fffffff</color>
+    <color name="grey_50">#b3f7f7f7</color>
+    <color name="white_70">#626262</color>
+    <color name="grey_readings">#626262</color>
+    <color name="white_off">#f1f1f1</color>
+    <color name="black_24">#3d000000</color>
+    <color name="teelish_8">#1422b9b5</color>
+    <color name="dusty_orange_8">#14f78623</color>
+    <color name="rosy_pink_8">#14ff6a90</color>
+
+    <!--dashboard colors-->
+    <color name="dashboard_health_tips_color">#2A7599</color>
+    <color name="dashboard_health_tips_color_disabled">#D8E3E7</color>
+    <color name="dashboard_ask_the_doctor_color">#67CDD9</color>
+    <color name="dashboard_health_data_color">#3BBB9D</color>
+    <color name="dashboard_common_questions_color">#67B5D9</color>
+    <color name="dashboard_your_profile_color">#38C5CD</color>
+    <color name="marine_blue">#003C5B</color>
+    <color name="dash_green">#20E399</color>
+
+    <color name="gray_99">#979797</color>
+
+    <color name="blueish">#003C5B</color>
+
+    <!--Colors: Chat-->
+    <color name="chat_sender_gray">#F3F3F3</color>
+    <color name="chat_receiver_green">#263EC779</color>
+    <color name="button_send_green">#3EC779</color>
 </resources>

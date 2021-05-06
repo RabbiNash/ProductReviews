@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="padding_2">2dp</dimen>
+    <dimen name="padding_4">4dp</dimen>
+    <dimen name="padding_6">6dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+    <dimen name="padding_22">22dp</dimen>
+    <dimen name="padding_24">24dp</dimen>
+    <dimen name="padding_28">28dp</dimen>
+    <dimen name="padding_30">30dp</dimen>
+    <dimen name="padding_32">32dp</dimen>
+    <dimen name="padding_36">36dp</dimen>
+    <dimen name="padding_40">40dp</dimen>
+    <dimen name="padding_46">46dp</dimen>
+    <dimen name="padding_48">48dp</dimen>
+    <dimen name="padding_56">56dp</dimen>
+    <dimen name="padding_62">62dp</dimen>
+    <dimen name="padding_66">66dp</dimen>
+    <dimen name="padding_102">102dp</dimen>
+
+    <dimen name="font_xx_small">10sp</dimen>
+    <dimen name="font_x_small">12sp</dimen>
+    <dimen name="font_small">14sp</dimen>
+    <dimen name="font_medium">16sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_x_large">20sp</dimen>
+    <dimen name="font_xx_large">24sp</dimen>
+    <dimen name="font_xxx_large">36sp</dimen>
+    <dimen name="font_40">40sp</dimen>
+    <dimen name="font_60">60sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="design_bottom_navigation_height" tools:override="true">70dp</dimen>
+
+    <dimen name="dashboard_title_vertical_bias">0.9</dimen>
+    <dimen name="corners_item_dashboard">8dp</dimen>
+    <dimen name="corners_counter">2dp</dimen>
+
+    <dimen name="corners_buttons">4dp</dimen>
+    <dimen name="corners_ask_doctor">4dp</dimen>
+    <dimen name="corners_navigation_item_counter">2dp</dimen>
+    <dimen name="navigation_item_counter_size">20dp</dimen>
+    <dimen name="viewpagerindicator_height">16dp</dimen>
+    <dimen name="navigation_view_padding_left">30dp</dimen>
+    <dimen name="navigation_view_item_height">38sp</dimen>
+    <dimen name="readings_tab_layout_height">60dp</dimen>
+    <dimen name="reading_details_navigation_width">62dp</dimen>
+
+    <dimen name="elevation_item_dashboard_locked">0dp</dimen>
+    <dimen name="elevation_item_dashboard">2dp</dimen>
+    <dimen name="elevation_counter">3dp</dimen>
+
+    <dimen name="feedback_input_min_size_keyboard">200dp</dimen>
+    <dimen name="feedback_input_min_size_no_keyboard">150dp</dimen>
+
+    <dimen name="doctor_cancel_size">30dp</dimen>
+    <dimen name="doctor_image_size">120dp</dimen>
+
+    <dimen name="chat_input_icon_size">36dp</dimen>
+    <dimen name="chat_max_height">100dp</dimen>
+    <dimen name="chat_image_size">150dp</dimen>
+
+    <dimen name="profile_image_size">80dp</dimen>
+    <dimen name="attachment_image_size">80dp</dimen>
+    <dimen name="profile_reading_width">60dp</dimen>
+    <dimen name="profile_reading_icon">25dp</dimen>
+    <dimen name="reading_tab_indicator">3dp</dimen>
+
+    <dimen name="warning_icon_size">30dp</dimen>
+
+    <dimen name="code_separator_width">10dp</dimen>
+
+    <dimen name="bubble_size">200dp</dimen>
+
+    <dimen name="feeling_smiley_small">25dp</dimen>
+    <dimen name="feeling_smiley_large">40dp</dimen>
+
+    <dimen name="scrollbar_size">3dp</dimen>
+
+    <dimen name="lock_image_size">20dp</dimen>
+
+</resources>
