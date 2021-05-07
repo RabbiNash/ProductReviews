@@ -29,6 +29,10 @@ class ReviewViewModel @Inject constructor(
     val reviewCreationLiveData : LiveData<Result<Boolean>>
         get() = _reviewCreationSuccess
 
+    private val _reviewStarAvgLiveData = MutableLiveData<Double>()
+    val reviewStarAvgLiveData : LiveData<Double>
+        get() = _reviewStarAvgLiveData
+
     init {
         _reviewsLiveData.value = Result.Idle
     }
@@ -51,6 +55,7 @@ class ReviewViewModel @Inject constructor(
             try {
                 val reviewListing  =  viewMapper.mapToViewList(retrieveReviews(id))
                 _reviewsLiveData.value = Result.Success(reviewListing)
+                _reviewStarAvgLiveData.value = reviewListing.map { review -> review.rating }.average()
             } catch (e : Exception){
                 _reviewsLiveData.value = Result.Error(e.message)
             }

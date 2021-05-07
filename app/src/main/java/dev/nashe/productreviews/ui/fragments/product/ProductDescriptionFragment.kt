@@ -40,6 +40,7 @@ class ProductDescriptionFragment : BaseFragment<FragmentProductDescriptionBindin
 
         reviewViewModel.getProductReviews(args.product.id)
         observeReviews()
+        observeRatingAverage()
     }
 
     private fun observeReviews() {
@@ -58,6 +59,12 @@ class ProductDescriptionFragment : BaseFragment<FragmentProductDescriptionBindin
 
                 }
             }
+        })
+    }
+
+    private fun observeRatingAverage(){
+        reviewViewModel.reviewStarAvgLiveData.observe(viewLifecycleOwner, Observer {
+            binding?.rbRating?.rating = it.toFloat()
         })
     }
 
