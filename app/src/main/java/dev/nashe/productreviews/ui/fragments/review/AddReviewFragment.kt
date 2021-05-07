@@ -64,6 +64,7 @@ class AddReviewFragment : BaseFragment<FragmentAddReviewBinding>(), View.OnClick
                 return
             }
             reviewViewModel.createProductReview(ReviewView("en-Us", args.productId, rbRating.numStars, etMessage.text.toString()))
+            findNavController().navigateUp()
         }
     }
 

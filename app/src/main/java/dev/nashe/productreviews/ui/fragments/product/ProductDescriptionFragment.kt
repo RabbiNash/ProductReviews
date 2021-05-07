@@ -2,9 +2,11 @@ package dev.nashe.productreviews.ui.fragments.product
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.nashe.productreviews.R
@@ -23,7 +25,9 @@ class ProductDescriptionFragment : BaseFragment<FragmentProductDescriptionBindin
         get() = R.layout.fragment_product_description
 
     private val args: ProductDescriptionFragmentArgs by navArgs()
-    private val reviewViewModel : ReviewViewModel by viewModels()
+    private val reviewViewModel : ReviewViewModel by navGraphViewModels(R.id.main_nav_graph){
+        defaultViewModelProviderFactory
+    }
     private val reviewAdapter : ReviewAdapter = ReviewAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,6 +41,8 @@ class ProductDescriptionFragment : BaseFragment<FragmentProductDescriptionBindin
 
             product = args.product
         }
+
+        binding?.listener = this
 
         reviewViewModel.getProductReviews(args.product.id)
         observeReviews()

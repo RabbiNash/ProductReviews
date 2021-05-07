@@ -6,4 +6,6 @@
     <string name="title_review_message">Review Message</string>
     <string name="btn_submit_review">Submit Review</string>
     <string name="title_add_review">Add Review</string>
+
+    <string name="title_usd">$ %s</string>
 </resources>

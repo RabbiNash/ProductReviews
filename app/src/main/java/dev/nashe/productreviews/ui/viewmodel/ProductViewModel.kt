@@ -6,16 +6,19 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.nashe.domain.interactors.product.GetProducts
 import dev.nashe.domain.interactors.product.SearchProduct
 import dev.nashe.productreviews.mapper.ProductViewMapper
 import dev.nashe.productreviews.model.ProductView
 import dev.nashe.productreviews.util.Result
+import dev.nashe.productreviews.worker.ProductSyncWorker
 import dev.nashe.productreviews.worker.ReviewSyncWorker
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class ProductViewModel @Inject constructor(
     private val getProducts: GetProducts,
     private val searchProduct: SearchProduct,
@@ -55,6 +58,8 @@ class ProductViewModel @Inject constructor(
                 }
             }
         }
+
+        startProductSync()
     }
 
     fun getAllProducts() {
@@ -87,15 +92,11 @@ class ProductViewModel @Inject constructor(
             .setRequiresCharging(false)
             .build()
 
-        val reviewSyncWorker =
-            OneTimeWorkRequest.Builder(ReviewSyncWorker::class.java).setConstraints(constraints)
+        val productSyncWorker =
+            OneTimeWorkRequest.Builder(ProductSyncWorker::class.java).setConstraints(constraints)
                 .build()
 
-        WorkManager.getInstance(getApplication()).enqueue(reviewSyncWorker)
-    }
-
-    init {
-        startProductSync()
+        WorkManager.getInstance(getApplication()).enqueue(productSyncWorker)
     }
 
     companion object {

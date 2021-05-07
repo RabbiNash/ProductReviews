@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import dev.nashe.productreviews.R
 import dev.nashe.productreviews.databinding.FragmentDashboardBinding
@@ -18,6 +21,7 @@ import dev.nashe.productreviews.ui.fragments.base.BaseFragment
 import dev.nashe.productreviews.ui.viewmodel.ProductViewModel
 import dev.nashe.productreviews.util.ItemOffsetDecoration
 import dev.nashe.productreviews.util.Result
+import kotlinx.coroutines.CoroutineScope
 
 @AndroidEntryPoint
 class DashboardFragment : BaseFragment<FragmentDashboardBinding>(), BaseRecyclerAdapter.Callback<ProductView> {
@@ -25,7 +29,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>(), BaseRecycler
     override val layout: Int
         get() = R.layout.fragment_dashboard
 
-    private val viewModel : ProductViewModel by viewModels()
+    private val viewModel : ProductViewModel by navGraphViewModels(R.id.main_nav_graph){
+        defaultViewModelProviderFactory
+    }
 
     private val productAdapter : ProductAdapter =  ProductAdapter(this)
 
@@ -33,7 +39,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>(), BaseRecycler
         override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
         override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            viewModel.performSearch(text.toString())
+            viewModel.performSearch("%${text.toString()}%")
         }
 
         override fun afterTextChanged(p0: Editable?) {}
@@ -47,6 +53,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>(), BaseRecycler
             initDashboardView()
         }
 
+        viewModel.getAllProducts()
         observeProductsLiveData()
         observeSearchLiveData()
     }
@@ -62,10 +69,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>(), BaseRecycler
 
                     }
                     is Result.Error -> {
-
+                        Snackbar.make(requireView(), "An error occured while loading products", Snackbar.LENGTH_LONG).show()
                     }
                     is Result.Success -> {
-                        productAdapter.setItems(it.data)
+                        if(it.data.isEmpty()){
+                            Snackbar.make(requireView(), "Please wait while we are loading products", Snackbar.LENGTH_LONG).show()
+                        } else productAdapter.setItems(it.data)
                     }
                 }
             })
@@ -84,7 +93,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>(), BaseRecycler
 
                 }
                 is Result.Success -> {
-                    productAdapter.setItems(it.data)
+                    if(it.data.isEmpty()){
+                        viewModel.getAllProducts()
+                    } else {
+                        binding?.pbLoadingAnim?.visibility = View.GONE
+                        productAdapter.setItems(it.data)
+                    }
                 }
             }
         })

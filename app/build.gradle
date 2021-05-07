@@ -73,6 +73,9 @@ dependencies {
     implementation appDependencies.workktx
     implementation appDependencies.hiltWorker
 
+    //lottie animation
+    implementation appDependencies.lottie
+
     //glide
     implementation appDependencies.glide
     kapt appDependencies.glideCompiler
@@ -85,9 +88,10 @@ dependencies {
 
     //Dependency Injection
     implementation appDependencies.hilt
-    implementation appDependencies.hiltViewModel
+//    implementation appDependencies.hiltViewModel
     kapt appDependencies.hiltCompiler
-    kapt appDependencies.hiltViewModelCompiler
+    kapt 'androidx.hilt:hilt-compiler:1.0.0'
+//    kapt appDependencies.hiltViewModelCompiler
 
     //Testing
     testImplementation appTestDependencies.junit

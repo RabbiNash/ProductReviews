@@ -22,12 +22,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "PRIMARY_BASE_URL", "\"http://localhost:3001/\""
+            buildConfigField "String", "PRIMARY_BASE_URL", "\"https://60f26b6849f3.ngrok.io/\""
             buildConfigField "String", "SECONDARY_BASE_URL", "\"http://localhost:3002/\""
 
         }
         debug {
-            buildConfigField "String", "PRIMARY_BASE_URL", "\"http://localhost:3001/\""
+            buildConfigField "String", "PRIMARY_BASE_URL", "\"https://60f26b6849f3.ngrok.io/\""
             buildConfigField "String", "SECONDARY_BASE_URL", "\"http://localhost:3002/\""
         }
     }

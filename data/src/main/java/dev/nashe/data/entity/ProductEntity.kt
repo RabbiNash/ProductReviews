@@ -1,9 +1,7 @@
 package dev.nashe.data.entity
 
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import dev.nashe.domain.model.review.Review
 
 @Entity(tableName = "products")
 data class ProductEntity(
@@ -12,5 +10,5 @@ data class ProductEntity(
         val description: String,
         val imgUrl: String,
         val name: String,
-        val price: Int,
+        val price: Double
 )

@@ -105,7 +105,10 @@
                         android:id="@+id/et_message"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/bg_edit_text" />
+                        android:lines="3"
+                        android:imeOptions="actionDone"
+                        android:inputType="textMultiLine"
+                        android:background="@drawable/bg_gray_rounded" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

@@ -8,5 +8,6 @@ data class Product(
     val id: String,
     val imgUrl: String,
     val name: String,
-    val price: Int
+    val price: Double,
+    val reviews : List<Review>? = null
  )

@@ -3,6 +3,7 @@ package dev.nashe.productreviews.ui.viewmodel
 import android.app.Application
 import androidx.lifecycle.*
 import androidx.work.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.nashe.domain.interactors.reviews.CreateReview
 import dev.nashe.domain.interactors.reviews.RetrieveReviews
 import dev.nashe.productreviews.mapper.review.ReviewDomainMapper
@@ -14,6 +15,7 @@ import dev.nashe.productreviews.worker.ReviewSyncWorker
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class ReviewViewModel @Inject constructor(
     private val createReview: CreateReview,
     private val retrieveReviews: RetrieveReviews,

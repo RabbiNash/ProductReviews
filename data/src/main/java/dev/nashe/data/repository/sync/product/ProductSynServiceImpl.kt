@@ -20,7 +20,7 @@ class ProductSynServiceImpl @Inject constructor(
     override fun syncProducts() {
         launch(Dispatchers.IO) {
             try {
-                productSynCallback.getProductSyncSuccess(entityMapper.mapToDomainList(apiService.getProducts()))
+                productSynCallback.getProductSyncSuccess(apiService.getProducts())
             } catch (e : Exception){
                 productSynCallback.getProductSyncFailure()
             }

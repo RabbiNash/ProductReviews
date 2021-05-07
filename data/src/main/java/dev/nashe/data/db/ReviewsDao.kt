@@ -1,9 +1,7 @@
 package dev.nashe.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
+import dev.nashe.data.entity.ProductEntity
 import dev.nashe.data.entity.ReviewEntity
 
 @Dao
@@ -16,9 +14,12 @@ interface ReviewsDao {
     fun findAllAsync() : List<ReviewEntity>
 
     @Query("SELECT * FROM reviews where productId = :productId")
-    fun getProductReview(productId : String) : List<ReviewEntity>
+    suspend fun getProductReview(productId : String) : List<ReviewEntity>
 
     @Update
     suspend fun update(obj: ReviewEntity)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAll(obj: Collection<ReviewEntity>?): LongArray?
 
 }

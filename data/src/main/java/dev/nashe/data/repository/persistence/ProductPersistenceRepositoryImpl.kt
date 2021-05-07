@@ -3,8 +3,10 @@ package dev.nashe.data.repository.persistence
 import android.util.Log
 import dev.nashe.data.api.ApiService
 import dev.nashe.data.db.ProductDao
+import dev.nashe.data.db.ReviewsDao
 import dev.nashe.data.mapper.products.ProductDomainMapper
 import dev.nashe.data.mapper.products.ProductEntityMapper
+import dev.nashe.data.mapper.reviews.ReviewDomainMapper
 import dev.nashe.data.repository.sync.SyncScope
 import dev.nashe.data.repository.sync.product.ProductSynServiceImpl
 import dev.nashe.domain.model.product.Product
@@ -18,8 +20,10 @@ import javax.inject.Inject
 class ProductPersistenceRepositoryImpl @Inject constructor(
         private val apiService: ApiService,
         private val productDao: ProductDao,
+        private val reviewsDao: ReviewsDao,
         private val domainMapper: ProductDomainMapper,
-        private val entityMapper : ProductEntityMapper
+        private val entityMapper : ProductEntityMapper,
+        private val reviewDomainMapper: ReviewDomainMapper
 ) : ProductPersistenceRepository, ProductSynCallback, CoroutineScope by SyncScope() {
 
     private val productSyncService =
@@ -31,6 +35,7 @@ class ProductPersistenceRepositoryImpl @Inject constructor(
 
     override fun getProductSyncSuccess(products: List<Product>) {
         launch (Dispatchers.IO) {
+            reviewsDao.insertAll(reviewDomainMapper.mapToEntityList(products.flatMap { product -> product.reviews!! }))
             productDao.insertAll(domainMapper.mapToEntityList(products))
         }
     }
