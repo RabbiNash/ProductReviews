@@ -71,6 +71,10 @@ dependencies {
     implementation appDependencies.workktx
     implementation appDependencies.hiltWorker
 
+    //glide
+    implementation appDependencies.glide
+    kapt appDependencies.glideCompiler
+
     //Navigation UI
     implementation appDependencies.androidxFragment
     implementation appDependencies.androidxActivity

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="dev.nashe.domain.model.product.Product" />
+            type="dev.nashe.productreviews.model.ProductView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

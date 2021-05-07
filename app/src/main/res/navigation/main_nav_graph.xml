@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="dev.nashe.productreviews.ui.fragments.product.DashboardFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_productDescriptionFragment"
+            app:destination="@id/productDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addReviewFragment"
+        android:name="dev.nashe.productreviews.ui.fragments.review.AddReviewFragment"
+        android:label="AddReviewFragment" />
+    <fragment
+        android:id="@+id/productDescriptionFragment"
+        android:name="dev.nashe.productreviews.ui.fragments.product.ProductDescriptionFragment"
+        android:label="ProductDescriptionFragment" >
+        <action
+            android:id="@+id/action_productDescriptionFragment_to_addReviewFragment"
+            app:destination="@id/addReviewFragment" />
+    </fragment>
+</navigation>
