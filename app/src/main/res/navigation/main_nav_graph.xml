@@ -14,7 +14,11 @@
     <fragment
         android:id="@+id/addReviewFragment"
         android:name="dev.nashe.productreviews.ui.fragments.review.AddReviewFragment"
-        android:label="AddReviewFragment" />
+        android:label="AddReviewFragment" >
+        <argument
+            android:name="productId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/productDescriptionFragment"
         android:name="dev.nashe.productreviews.ui.fragments.product.ProductDescriptionFragment"
@@ -22,5 +26,8 @@
         <action
             android:id="@+id/action_productDescriptionFragment_to_addReviewFragment"
             app:destination="@id/addReviewFragment" />
+        <argument
+            android:name="product"
+            app:argType="dev.nashe.productreviews.model.ProductView" />
     </fragment>
 </navigation>

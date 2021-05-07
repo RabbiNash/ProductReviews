@@ -15,6 +15,9 @@ interface ReviewsDao {
     @Query("SELECT * FROM reviews where synced = 0")
     fun findAllAsync() : List<ReviewEntity>
 
+    @Query("SELECT * FROM reviews where productId = :productId")
+    fun getProductReview(productId : String) : List<ReviewEntity>
+
     @Update
     suspend fun update(obj: ReviewEntity)
 

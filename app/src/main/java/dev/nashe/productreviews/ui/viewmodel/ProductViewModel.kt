@@ -1,14 +1,17 @@
 package dev.nashe.productreviews.ui.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import dev.nashe.domain.interactors.product.GetProducts
 import dev.nashe.domain.interactors.product.SearchProduct
 import dev.nashe.productreviews.mapper.ProductViewMapper
 import dev.nashe.productreviews.model.ProductView
 import dev.nashe.productreviews.util.Result
+import dev.nashe.productreviews.worker.ReviewSyncWorker
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,8 +19,9 @@ import javax.inject.Inject
 class ProductViewModel @Inject constructor(
     private val getProducts: GetProducts,
     private val searchProduct: SearchProduct,
-    private val productViewMapper: ProductViewMapper
-) : ViewModel() {
+    private val productViewMapper: ProductViewMapper,
+    application: Application
+) : AndroidViewModel(application) {
 
     private val _productsLiveData = MutableLiveData<Result<List<ProductView>>>()
     val productsLiveData: LiveData<Result<List<ProductView>>>
@@ -63,6 +67,35 @@ class ProductViewModel @Inject constructor(
                 _productsLiveData.value = Result.Error(e.message)
             }
         }
+    }
+
+    fun performSearch(searchParam: String) {
+        _searchResults.value = Result.Loading
+
+        viewModelScope.launch {
+            if (searchParam.isEmpty()) {
+                _searchResults.value = Result.Idle
+            } else {
+                searchInput.emit(searchParam)
+            }
+        }
+    }
+
+    private fun startProductSync() {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiresCharging(false)
+            .build()
+
+        val reviewSyncWorker =
+            OneTimeWorkRequest.Builder(ReviewSyncWorker::class.java).setConstraints(constraints)
+                .build()
+
+        WorkManager.getInstance(getApplication()).enqueue(reviewSyncWorker)
+    }
+
+    init {
+        startProductSync()
     }
 
     companion object {

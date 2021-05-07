@@ -5,4 +5,5 @@
     <string name="title_rating">Rating</string>
     <string name="title_review_message">Review Message</string>
     <string name="btn_submit_review">Submit Review</string>
+    <string name="title_add_review">Add Review</string>
 </resources>
