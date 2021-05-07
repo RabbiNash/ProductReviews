@@ -8,6 +8,7 @@ import dev.nashe.domain.interactors.reviews.RetrieveReviews
 import dev.nashe.productreviews.mapper.review.ReviewDomainMapper
 import dev.nashe.productreviews.mapper.review.ReviewViewMapper
 import dev.nashe.productreviews.model.ReviewView
+import dev.nashe.productreviews.util.MathUtils.listAverage
 import dev.nashe.productreviews.util.Result
 import dev.nashe.productreviews.worker.ReviewSyncWorker
 import kotlinx.coroutines.launch
@@ -55,7 +56,7 @@ class ReviewViewModel @Inject constructor(
             try {
                 val reviewListing  =  viewMapper.mapToViewList(retrieveReviews(id))
                 _reviewsLiveData.value = Result.Success(reviewListing)
-                _reviewStarAvgLiveData.value = reviewListing.map { review -> review.rating }.average()
+                _reviewStarAvgLiveData.value = listAverage(reviewListing.map { review -> review.rating })
             } catch (e : Exception){
                 _reviewsLiveData.value = Result.Error(e.message)
             }
