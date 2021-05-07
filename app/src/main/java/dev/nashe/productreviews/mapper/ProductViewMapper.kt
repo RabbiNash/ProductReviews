@@ -1,11 +1,11 @@
 package dev.nashe.productreviews.mapper
 
 import dev.nashe.domain.model.product.Product
-import dev.nashe.productreviews.mapper.base.Mapper
+import dev.nashe.productreviews.mapper.base.ViewMapper
 import dev.nashe.productreviews.model.ProductView
 import javax.inject.Inject
 
-class ProductViewMapper @Inject constructor() : Mapper<ProductView, Product> {
+class ProductViewMapper @Inject constructor() : ViewMapper<ProductView, Product> {
 
     override fun mapToView(domain: Product): ProductView {
         return ProductView(
