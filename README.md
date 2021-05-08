@@ -88,5 +88,5 @@ Adding a splash screen could help, so that on first run all the data can be down
 
 ## Screenshots
  
-<img src="http://nashe.dev/wp-content/uploads/2021/05/WhatsApp-Image-2021-05-08-at-09.13.09.jpeg" width="250px"/> <img src="http://nashe.dev/wp-content/uploads/2021/05/2.jpeg" width="250px"/> <img src="http://nashe.dev/wp-content/uploads/2021/05/3.jpeg" width="250px"/>
+<img src="http://nashe.dev/wp-content/uploads/2021/05/4.jpeg" width="250px"/> <img src="http://nashe.dev/wp-content/uploads/2021/05/2.jpeg" width="250px"/> <img src="http://nashe.dev/wp-content/uploads/2021/05/3.jpeg" width="250px"/>
 
