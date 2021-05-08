@@ -57,10 +57,14 @@ This layer has houses all  Android Framework specific tooling i.e User Interface
 `LiveData` keeps you updated all the time.
 `Dagger Hilt` Simple dependency management.
 `Lottie Android` For the nice sneaker animation
+`Firebase Crashlytics` For crash logging
 
 ## Tests
 
 Unit Tests are available for each layer and Instrumentation tests are present in the presentation layer. I tried to cover as much as i can, but i think there could still be room for more.
+
+## Side Note
+I used Flow to reduce the number of requests to the database made by the `SearchProduct` usecase. With the aid of the debounce operator, whenever a user types into the search field, it waits for 500ms before making a request.
 
 ## What to improve
 
@@ -83,5 +87,6 @@ Adding a splash screen could help, so that on first run all the data can be down
 
 
 ## Screenshots
- To be added soon
+ 
+ ![][1.png]
 
