@@ -14,7 +14,9 @@ class ReviewsRepositoryImpl  @Inject constructor(
 ) : ReviewRepository {
 
     override suspend fun createReview(review: Review) {
-        reviewsDao.createReview(reviewDomainMapper.mapToEntity(review))
+        val reviewEntity = reviewDomainMapper.mapToEntity(review)
+        reviewEntity.synced = false
+        reviewsDao.createReview(reviewEntity)
     }
 
     override suspend fun getReviews(id: String): List<Review> =

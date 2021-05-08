@@ -11,9 +11,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.nashe.productreviews.R
 import dev.nashe.productreviews.databinding.FragmentAddReviewBinding
 import dev.nashe.productreviews.model.ReviewView
+import dev.nashe.productreviews.ui.activities.MainActivity
 import dev.nashe.productreviews.ui.fragments.base.BaseFragment
 import dev.nashe.productreviews.ui.viewmodel.ReviewViewModel
 import dev.nashe.productreviews.util.Result
+import dev.nashe.productreviews.worker.ReviewSyncWorker
 
 @AndroidEntryPoint
 class AddReviewFragment : BaseFragment<FragmentAddReviewBinding>(), View.OnClickListener {
@@ -64,8 +66,13 @@ class AddReviewFragment : BaseFragment<FragmentAddReviewBinding>(), View.OnClick
                 return
             }
             reviewViewModel.createProductReview(ReviewView("en-Us", args.productId, rbRating.numStars, etMessage.text.toString()))
+            sync()
             findNavController().navigateUp()
         }
+    }
+
+    private fun sync(){
+        (activity as MainActivity).workRequestBuilder(ReviewSyncWorker::class.java)
     }
 
     private fun showToast(message: String) {

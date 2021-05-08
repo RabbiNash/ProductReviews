@@ -13,7 +13,6 @@ import dev.nashe.productreviews.mapper.ProductViewMapper
 import dev.nashe.productreviews.model.ProductView
 import dev.nashe.productreviews.util.Result
 import dev.nashe.productreviews.worker.ProductSyncWorker
-import dev.nashe.productreviews.worker.ReviewSyncWorker
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,9 +21,8 @@ import javax.inject.Inject
 class ProductViewModel @Inject constructor(
     private val getProducts: GetProducts,
     private val searchProduct: SearchProduct,
-    private val productViewMapper: ProductViewMapper,
-    application: Application
-) : AndroidViewModel(application) {
+    private val productViewMapper: ProductViewMapper
+    ) : ViewModel() {
 
     private val _productsLiveData = MutableLiveData<Result<List<ProductView>>>()
     val productsLiveData: LiveData<Result<List<ProductView>>>
@@ -40,16 +38,16 @@ class ProductViewModel @Inject constructor(
         _productsLiveData.value = Result.Idle
 
         viewModelScope.launch {
-            //Debounce the input to reduce unnecessary requests to the database
-            // and to also wait and confirm if the user has actually put some input
-
+            /*Debounce the input to reduce unnecessary requests to the database and to also wait
+            and confirm if the user has actually put some input
+             */
             searchInput.debounce(timeoutMillis = DEBOUNCE_VAL).collect {
                 if (it.isEmpty()) {
                     _searchResults.value = Result.Idle
                 } else {
                     searchProduct(it)
                         .catch { throwable ->
-                                _searchResults.value = Result.Error(throwable.message)
+                            _searchResults.value = Result.Error(throwable.message)
                         }
                         .collect { productListing ->
                             _searchResults.value =
@@ -59,7 +57,6 @@ class ProductViewModel @Inject constructor(
             }
         }
 
-        startProductSync()
     }
 
     fun getAllProducts() {
@@ -84,19 +81,6 @@ class ProductViewModel @Inject constructor(
                 searchInput.emit(searchParam)
             }
         }
-    }
-
-    private fun startProductSync() {
-        val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .setRequiresCharging(false)
-            .build()
-
-        val productSyncWorker =
-            OneTimeWorkRequest.Builder(ProductSyncWorker::class.java).setConstraints(constraints)
-                .build()
-
-        WorkManager.getInstance(getApplication()).enqueue(productSyncWorker)
     }
 
     companion object {

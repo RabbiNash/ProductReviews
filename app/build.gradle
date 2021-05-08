@@ -91,10 +91,8 @@ dependencies {
 
     //Dependency Injection
     implementation appDependencies.hilt
-//    implementation appDependencies.hiltViewModel
     kapt appDependencies.hiltCompiler
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
-//    kapt appDependencies.hiltViewModelCompiler
 
     //Testing
     testImplementation appTestDependencies.junit
@@ -105,4 +103,6 @@ dependencies {
     androidTestImplementation appTestDependencies.jUnitExt
     androidTestImplementation appTestDependencies.androidTestRunner
     androidTestImplementation appTestDependencies.espresso
+    testImplementation appTestDependencies.robolectric
+
 }

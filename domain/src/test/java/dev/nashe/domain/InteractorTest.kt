@@ -5,6 +5,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import dev.nashe.domain.interactors.product.GetProducts
 import dev.nashe.domain.interactors.product.SearchProduct
 import dev.nashe.domain.interactors.reviews.CreateReview
+import dev.nashe.domain.interactors.reviews.RetrieveReviews
 import dev.nashe.domain.model.product.Product
 import dev.nashe.domain.model.review.Review
 import dev.nashe.domain.repository.ProductRepository
@@ -27,6 +28,7 @@ class InteractorTest {
     private lateinit var getProducts: GetProducts
     private lateinit var createReview : CreateReview
     private lateinit var searchProduct: SearchProduct
+    private lateinit var retrieveReviews: RetrieveReviews
 
     @Mock
     lateinit var productRepository : ProductRepository
@@ -40,6 +42,7 @@ class InteractorTest {
         getProducts = GetProducts(productRepository)
         searchProduct = SearchProduct(productRepository)
         createReview = CreateReview(reviewRepository)
+        retrieveReviews = RetrieveReviews(reviewRepository)
     }
 
     private suspend fun stubProductRepositoryGetProducts(product : Product){
@@ -52,6 +55,10 @@ class InteractorTest {
 
     private suspend fun stubProductRepositorySearchProductByName(result : Flow<List<Product>>){
         whenever(searchProduct(DataStub.productName)).thenReturn(result)
+    }
+
+    private suspend fun stubReviewRepositoryRetrieveReviews(review: Review, productId :String){
+        whenever(retrieveReviews(productId)).thenReturn(listOf(review))
     }
 
     @Test
@@ -73,13 +80,22 @@ class InteractorTest {
     }
 
     @Test
-    fun `check if product search retrieves a product if its available`() = runBlockingTest {
-        stubProductRepositorySearchProductByName(flowOf(listOf(DataStub.fakeProduct)))
+    fun `check if reviews are retrieved by post id`() =  runBlockingTest {
+        stubReviewRepositoryRetrieveReviews(DataStub.review, DataStub.fakeProduct.id)
 
-        val product = searchProduct(DataStub.productName).first()
+        val reviews = retrieveReviews(DataStub.fakeProduct.id)
 
-        assertThat(product.size).isAtLeast(MIN_FLOW_VAL)
+        assertThat(reviews).isEqualTo(listOf(DataStub.review))
     }
+
+//    @Test
+//    fun `check if product search retrieves a product if its available`() = runBlockingTest {
+//        stubProductRepositorySearchProductByName(flowOf(listOf(DataStub.fakeProduct)))
+//
+//        val product = searchProduct(DataStub.productName).first()
+//
+//        assertThat(product.size).isAtLeast(MIN_FLOW_VAL)
+//    }
 
     @Test(expected = IllegalArgumentException::class)
     fun `check if illegal argument exception is raised if search param is null`() = runBlockingTest {

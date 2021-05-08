@@ -67,4 +67,6 @@ dependencies {
     androidTestImplementation dataTestDependencies.androidTestRules
     testImplementation dataTestDependencies.kotlinCoroutines
     testImplementation dataTestDependencies.truth
+    testImplementation  dataTestDependencies.roomTesting
+    testImplementation dataTestDependencies.robolectric
 }

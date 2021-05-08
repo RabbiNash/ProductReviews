@@ -20,9 +20,8 @@ class ReviewViewModel @Inject constructor(
     private val createReview: CreateReview,
     private val retrieveReviews: RetrieveReviews,
     private val domainMapper : ReviewDomainMapper,
-    private val viewMapper: ReviewViewMapper,
-    application: Application
-) :  AndroidViewModel(application) {
+    private val viewMapper: ReviewViewMapper
+    ) :  ViewModel() {
 
     private val _reviewsLiveData = MutableLiveData<Result<List<ReviewView>>>()
     val reviewsLiveData: LiveData<Result<List<ReviewView>>>
@@ -45,7 +44,6 @@ class ReviewViewModel @Inject constructor(
             _reviewCreationSuccess.value = Result.Loading
             try {
                 createReview(domainMapper.mapToDomain(reviewView))
-                startSync()
             } catch (e: Exception) {
                 _reviewCreationSuccess.value = Result.Error(e.message)
             }
@@ -65,16 +63,4 @@ class ReviewViewModel @Inject constructor(
         }
     }
 
-    private fun startSync() {
-        val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .setRequiresCharging(false)
-            .build()
-
-        val reviewSyncWorker =
-            OneTimeWorkRequest.Builder(ReviewSyncWorker::class.java).setConstraints(constraints)
-                .build()
-
-        WorkManager.getInstance(getApplication()).enqueue(reviewSyncWorker)
-    }
 }

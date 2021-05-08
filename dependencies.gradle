@@ -73,6 +73,7 @@ ext {
     archTestingVersion = '2.1.0'
     ktxTestingVersion = '1.2.0'
     crashlytics = '2.5.2'
+    robolectric = '4.5.1'
 
     //firebase
     firebase = '27.1.0'
@@ -122,7 +123,9 @@ ext {
             jUnitExt           : "androidx.test.ext:junit:${jUnitExtVersion}",
             testCore           : "androidx.test:core:${testCoreVersion}",
             androidTestRules   : "androidx.test:rules:${androidTestRulesVersion}",
-            truth              : "com.google.truth:truth:${truthVersion}"
+            truth              : "com.google.truth:truth:${truthVersion}",
+            roomTesting        : "androidx.room:room-testing:$room",
+            robolectric       : "org.robolectric:robolectric:$robolectric"
     ]
 
     appDependencies = [
@@ -174,5 +177,7 @@ ext {
             truth            : "com.google.truth:truth:${truthVersion}",
             arch             : "androidx.arch.core:core-testing:${archTestingVersion}",
             coreKtx          : "androidx.test:core-ktx:${ktxTestingVersion}",
+            robolectric       : "org.robolectric:robolectric:$robolectric"
+
     ]
 }

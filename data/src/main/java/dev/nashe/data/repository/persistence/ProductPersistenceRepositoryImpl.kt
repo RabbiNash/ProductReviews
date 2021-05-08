@@ -35,7 +35,8 @@ class ProductPersistenceRepositoryImpl @Inject constructor(
 
     override fun getProductSyncSuccess(products: List<Product>) {
         launch (Dispatchers.IO) {
-            reviewsDao.insertAll(reviewDomainMapper.mapToEntityList(products.flatMap { product -> product.reviews!! }))
+            reviewsDao.insertAll(reviewDomainMapper
+                .mapToEntityList(products.flatMap { product -> product.reviews!! }))
             productDao.insertAll(domainMapper.mapToEntityList(products))
         }
     }
