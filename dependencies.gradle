@@ -9,6 +9,7 @@ ext {
     versionCode = 1
     versionName = "1.0"
     buildTools = "30.0.3"
+    googleServices = "4.3.5"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -71,6 +72,10 @@ ext {
     truthVersion = '1.0.1'
     archTestingVersion = '2.1.0'
     ktxTestingVersion = '1.2.0'
+    crashlytics = '2.5.2'
+
+    //firebase
+    firebase = '27.1.0'
 
     commonDependencies = [
             ktlint : "com.pinterest:ktlint:${ktlint}"
@@ -151,8 +156,11 @@ ext {
             room                         : "androidx.room:room-runtime:${room}",
             roomProcessor                : "androidx.room:room-compiler:${room}",
             workktx                      : "androidx.work:work-runtime-ktx:$work",
-            glide                        : 'com.github.bumptech.glide:glide:4.12.0',
-            glideCompiler               :'com.github.bumptech.glide:compiler:4.12.0'
+            glide                        : "com.github.bumptech.glide:glide:${glide}",
+            glideCompiler                : "com.github.bumptech.glide:compiler:${glide}",
+            firebaseBom                  : "com.google.firebase:firebase-bom:${firebase}",
+            firebaseCrashlytics          : "com.google.firebase:firebase-crashlytics",
+            firebaseAnalytics            : "com.google.firebase:firebase-analytics"
     ]
 
     appTestDependencies = [

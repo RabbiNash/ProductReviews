@@ -3,9 +3,9 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
-
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -66,6 +66,9 @@ dependencies {
     implementation appDependencies.androidLiveDataKtx
     implementation appDependencies.room
     implementation appDependencies.roomktx
+    implementation platform(appDependencies.firebaseBom)
+    implementation appDependencies.firebaseCrashlytics
+    implementation appDependencies.firebaseAnalytics
 
     kapt appDependencies.roomProcessor
 
