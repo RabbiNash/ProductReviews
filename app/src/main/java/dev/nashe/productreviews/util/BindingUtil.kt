@@ -1,6 +1,5 @@
 package dev.nashe.productreviews.util
 
-import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,12 +13,6 @@ import java.util.*
 
 class BindingUtil {
 
-//    private fun setImageFromUrl(imageView: ImageView?, url: String) {
-//        if (imageView != null) {
-//            Glide.with(imageView).load(url).into(imageView)
-//        }
-//    }
-
     companion object {
         @JvmStatic
         @BindingAdapter("imageUrl")
@@ -29,9 +22,9 @@ class BindingUtil {
             }
 
             val options = RequestOptions()
-                .error(R.drawable.placeholder)
+                .error(R.drawable.ic_search)
                 .centerInside()
-                .placeholder(R.drawable.placeholder)
+                .placeholder(R.drawable.ic_search)
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
 
             if (imageView != null) {
