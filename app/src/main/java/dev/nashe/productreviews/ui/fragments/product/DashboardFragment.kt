@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.nashe.productreviews.R
 import dev.nashe.productreviews.databinding.FragmentDashboardBinding
 import dev.nashe.productreviews.model.ProductView
+import dev.nashe.productreviews.ui.activities.MainActivity
 import dev.nashe.productreviews.ui.adapter.ProductAdapter
 import dev.nashe.productreviews.ui.adapter.base.BaseRecyclerAdapter
 import dev.nashe.productreviews.ui.fragments.base.BaseFragment
@@ -51,6 +52,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>(), BaseRecycler
         binding?.apply {
             etSearch.addTextChangedListener(textWatcher)
             initDashboardView()
+            refreshProducts.setOnRefreshListener {
+                (activity as MainActivity).startSync()
+                refreshProducts.isRefreshing = false
+            }
         }
 
         viewModel.getAllProducts()
@@ -60,7 +65,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>(), BaseRecycler
 
     private fun observeSearchLiveData() {
         viewModel.searchResults.asLiveData()
-            .observe(viewLifecycleOwner, Observer {
+            .observe(viewLifecycleOwner, {
                 when(it) {
                     is Result.Idle -> {
 
@@ -81,7 +86,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>(), BaseRecycler
     }
 
     private fun observeProductsLiveData() {
-        viewModel.productsLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.productsLiveData.observe(viewLifecycleOwner, {
             when(it) {
                 is Result.Idle -> {
 

@@ -1,5 +1,6 @@
 package dev.nashe.data.repository.sync.review
 
+import android.util.Log
 import dev.nashe.data.api.ReviewApiService
 import dev.nashe.data.repository.sync.SyncScope
 import dev.nashe.domain.model.review.Review
@@ -19,9 +20,10 @@ class ReviewSyncServiceImpl @Inject constructor(
     override fun syncReview(review: Review) {
         launch(Dispatchers.IO) {
             try {
-                reviewApiService.submitReview(review)
+                reviewApiService.submitReview(review.productId, review)
                 reviewSynCallback.getReviewSynSuccess(review)
             } catch (e : Exception){
+                Log.d("ReviewSyncServiceImpl", e.message.toString())
                 reviewSynCallback.getReviewSynFailure(review)
             }
         }

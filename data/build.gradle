@@ -28,7 +28,7 @@ android {
         }
         debug {
             buildConfigField "String", "PRIMARY_BASE_URL", "\"https://60f26b6849f3.ngrok.io/\""
-            buildConfigField "String", "SECONDARY_BASE_URL", "\"http://localhost:3002/\""
+            buildConfigField "String", "SECONDARY_BASE_URL", "\"https://d3f0595c74a9.ngrok.io/\""
         }
     }
     compileOptions {

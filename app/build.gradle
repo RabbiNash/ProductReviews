@@ -76,6 +76,9 @@ dependencies {
     implementation appDependencies.workktx
     implementation appDependencies.hiltWorker
 
+    //pull to refresh
+    implementation appDependencies.swipeToRefresh
+
     //lottie animation
     implementation appDependencies.lottie
 

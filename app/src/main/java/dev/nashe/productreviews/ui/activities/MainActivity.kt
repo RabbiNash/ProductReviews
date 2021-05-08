@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         startSync()
     }
 
-    private fun startSync(){
+    fun startSync(){
         startProductSync()
         startReviewSync()
     }

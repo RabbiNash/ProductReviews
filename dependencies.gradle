@@ -74,6 +74,7 @@ ext {
     ktxTestingVersion = '1.2.0'
     crashlytics = '2.5.2'
     robolectric = '4.5.1'
+    swipeToRefresh = '1.1.0'
 
     //firebase
     firebase = '27.1.0'
@@ -163,7 +164,8 @@ ext {
             glideCompiler                : "com.github.bumptech.glide:compiler:${glide}",
             firebaseBom                  : "com.google.firebase:firebase-bom:${firebase}",
             firebaseCrashlytics          : "com.google.firebase:firebase-crashlytics",
-            firebaseAnalytics            : "com.google.firebase:firebase-analytics"
+            firebaseAnalytics            : "com.google.firebase:firebase-analytics",
+            swipeToRefresh               : "androidx.swiperefreshlayout:swiperefreshlayout:$swipeToRefresh"
     ]
 
     appTestDependencies = [
