@@ -6,7 +6,7 @@
 
 ## Assignment for Android Engineer Role
 
-Hello! 😬 - This is a repository for a basic Product Reviews App.
+Hello, Bonjour - This is a repository for a Product Reviews App.
 
 The app is written 94.4% in Kotlin with all the necessary Unit and Instrumentation tests.
 
