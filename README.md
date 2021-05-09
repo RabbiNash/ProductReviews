@@ -8,7 +8,7 @@
 
 Hello, Bonjour - This is a repository for a Product Reviews App.
 
-The app is written 94.4% in Kotlin with all the necessary Unit and Instrumentation tests.
+The app is written 95.6% in Kotlin with all the necessary Unit and Instrumentation tests.
 
 As such in this project i aim to demonstrate:
 
@@ -68,7 +68,7 @@ I used Flow to reduce the number of requests to the database made by the `Search
 
 ## What to improve
 
-Adding a splash screen could help, so that on first run all the data can be downloaded whilst the user is entertained.
+Adding a splash screen could help, so that on first run all the data can be downloaded whilst the user is entertained. Using the paging library and live data on room will also speed up the local data retrieval process at the same time keeping the data in the presentation layer always fresh.
 
 
 ## Libraries I chose to use
@@ -87,6 +87,13 @@ Adding a splash screen could help, so that on first run all the data can be down
 
 
 ## Screenshots
+
+From a standard device - `Galaxy Note 9`
  
 <img src="http://nashe.dev/wp-content/uploads/2021/05/4.jpeg" width="250px"/> <img src="http://nashe.dev/wp-content/uploads/2021/05/2.jpeg" width="250px"/> <img src="http://nashe.dev/wp-content/uploads/2021/05/3.jpeg" width="250px"/>
+
+From a tablet - `Galaxy Tab S 10 Inch`
+
+<img src="http://nashe.dev/wp-content/uploads/2021/05/tab-1.jpg" width="250px"/> <img src="http://nashe.dev/wp-content/uploads/2021/05/tab-3.jpg" width="250px"/> <img src="http://nashe.dev/wp-content/uploads/2021/05/tab-3.jpg" width="250px"/>
+
 
