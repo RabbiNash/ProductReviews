@@ -4,7 +4,7 @@
 
 # Product Review App
 
-## Assignment for Android Engineer Role
+## Clean Arch Demo
 
 Hello, Bonjour - This is a repository for a Product Reviews App.
 
